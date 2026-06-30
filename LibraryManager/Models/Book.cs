@@ -23,7 +23,7 @@
 
         public override string ToString()
         {
-            return $"ID: {Id} | Title: {Title} | Author: {Author} | Genre: {Genre} | Status (Is available ?): {IsAvailable}";
+            return $"ID: {Id,-2} | Title: {Title,-10} | Author: {Author,-10} | Genre: {Genre,-10} | Status (Is available ?): {IsAvailable}";
         }
     }
 }

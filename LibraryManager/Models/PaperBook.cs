@@ -11,5 +11,9 @@
             PositionOnShelf = location;
         }
         public override bool MustBeReturned => true;
+        public override string ToString()
+        {
+            return $"{base.ToString()} | Shelf number: {ShelfNumber,-10} | Position on Shelf: {PositionOnShelf}";
+        }
     }
 }

@@ -11,5 +11,9 @@
             Format = format;
         }
         public override bool MustBeReturned => false;
+        public override string ToString()
+        {
+            return $"{base.ToString()} | File size: {FileSizeMb,-10} | Format: {Format}";
+        }
     }
 }
