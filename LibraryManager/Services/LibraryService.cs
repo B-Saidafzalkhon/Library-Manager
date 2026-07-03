@@ -65,5 +65,48 @@
                 book.IsAvailable = true;
             return ReturnResult.Success;
         }
+
+        public IEnumerable<Book> FindBooksByTitle(string title) => books
+            .Where(b => b.Title.Contains(title, StringComparison.OrdinalIgnoreCase));
+ 
+        public IEnumerable<Book> FindBooksByAuthor(string author) => books
+            .Where(b => b.Author.Contains(author, StringComparison.OrdinalIgnoreCase));
+        
+        public IEnumerable<Book> FindBooksByGenre(string genre) => books
+            .Where(b => b.Genre.Contains(genre, StringComparison.OrdinalIgnoreCase));
+
+        public IEnumerable<Book> GetLoanedBooks() => books.Where(b => b.IsAvailable == false);
+       
+        public Member? GetMemberWithMostLoans()
+        {
+            var topGroup = loans
+                .Where(l => !l.IsReturned)
+                .GroupBy(l => l.MemberId)
+                .OrderByDescending(g => g.Count())
+                .FirstOrDefault();
+
+            if (topGroup is not null)
+            {
+                Member? member = FindMemberById(topGroup.Key);
+                return member;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public IEnumerable<Book> GetPopularBooks()
+        {
+            var topBooks = loans
+                .GroupBy(l => l.BookId)
+                .OrderByDescending(g => g.Count())
+                .Take(3)
+                .Select(g => FindBookById(g.Key))
+                .Where(b => b is not null);
+
+            return topBooks!;
+        }
+        public IEnumerable<Loan> GetOverdueLoans() => loans.Where(l => l.IsOverdue);
+
     }
 }
