@@ -48,5 +48,22 @@
             book.IsAvailable = false;
             return LoanResult.Success;
         }
+        public ReturnResult ReturnBook(int loanId)
+        {
+            Loan? loan = loans.FirstOrDefault(l => l.Id == loanId);
+
+            if (loan is null)
+                return ReturnResult.LoanNotFound;
+
+            if (loan.IsReturned)
+                return ReturnResult.AlreadyReturned;
+
+            loan.MarkReturned();
+
+            Book? book = FindBookById(loan.BookId);
+            if(book is not null)
+                book.IsAvailable = true;
+            return ReturnResult.Success;
+        }
     }
 }

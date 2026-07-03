@@ -1,5 +1,11 @@
 ﻿namespace LibraryManager
 {
+    public enum ReturnResult
+    {
+        LoanNotFound,
+        AlreadyReturned,
+        Success
+    }
     public class Loan
     {
         private static int _nextId = 1;
@@ -25,11 +31,12 @@
 
         public bool IsReturned => ReturnDate is not null;
         public bool IsOverdue => !IsReturned && DueDate < DateTime.Now;
-        
+
         public override string ToString()
         {
             return $"Loan ID: {Id,-2} | Book ID: {BookId,-2} | Member ID: {MemberId,-2} | Loan date: {LoanDate:yyyy-MM-dd} | Due date: {DueDate:yyyy-MM-dd} | " +
                 $"Return date: {ReturnDate?.ToString("yyyy-MM-dd") ?? "Not returned"}";
         }
+        public void MarkReturned() => ReturnDate = DateTime.Now;
     }
 }
