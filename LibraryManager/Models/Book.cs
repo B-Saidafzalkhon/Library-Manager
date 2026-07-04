@@ -1,10 +1,14 @@
-﻿namespace LibraryManager
+﻿using System.Text.Json.Serialization;
+
+namespace LibraryManager
 {
+    [JsonDerivedType(typeof(PaperBook), "paperBook")]
+    [JsonDerivedType(typeof(EBook), "eBook")]
     public abstract class Book
     {
         private static int _nextId = 1;
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Genre { get; set; }
@@ -20,7 +24,11 @@
 
             IsAvailable = true;
         }
-
+        public static void UpdateNextId(int maxId)
+        {
+            if (maxId >= _nextId)
+                _nextId = maxId + 1;
+        }
         public override string ToString()
         {
             return $"ID: {Id,-2} | Title: {Title,-10} | Author: {Author,-10} | Genre: {Genre,-10} | Status (Is available ?): {IsAvailable}";

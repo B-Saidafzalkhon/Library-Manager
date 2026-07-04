@@ -9,12 +9,12 @@
     public class Loan
     {
         private static int _nextId = 1;
-        public int Id { get; private set; }
-        public int BookId { get; private set; }
-        public int MemberId { get; private set; }
-        public DateTime LoanDate { get; private set; }
-        public DateTime DueDate { get; private set; }
-        public DateTime? ReturnDate { get; private set; }
+        public int Id { get; set; }
+        public int BookId { get; set; }
+        public int MemberId { get; set; }
+        public DateTime LoanDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public Loan(int bookId, int memberId)
         {
@@ -31,7 +31,11 @@
 
         public bool IsReturned => ReturnDate is not null;
         public bool IsOverdue => !IsReturned && DueDate < DateTime.Now;
-
+        public static void UpdateNextId(int maxId)
+        {
+            if (maxId >= _nextId)
+                _nextId = maxId + 1;
+        }
         public override string ToString()
         {
             return $"Loan ID: {Id,-2} | Book ID: {BookId,-2} | Member ID: {MemberId,-2} | Loan date: {LoanDate:yyyy-MM-dd} | Due date: {DueDate:yyyy-MM-dd} | " +

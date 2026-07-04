@@ -5,10 +5,10 @@
         public int ShelfNumber {  get; set; }
         public int PositionOnShelf { get; set; }
 
-        public PaperBook(string title, string author, string genre, int shelf, int location) : base(title, author, genre)
+        public PaperBook(string title, string author, string genre, int shelfNumber, int positionOnShelf) : base(title, author, genre)
         {
-            ShelfNumber = shelf;
-            PositionOnShelf = location;
+            ShelfNumber = shelfNumber;
+            PositionOnShelf = positionOnShelf;
         }
         public override bool MustBeReturned => true;
         public override string ToString()

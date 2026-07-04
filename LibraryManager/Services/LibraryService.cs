@@ -108,5 +108,30 @@
         }
         public IEnumerable<Loan> GetOverdueLoans() => loans.Where(l => l.IsOverdue);
 
+        public LibraryData GetData()
+        {
+            LibraryData libraryData = new LibraryData();
+
+            libraryData.Books = books;
+            libraryData.Members = members;
+            libraryData.Loans = loans;
+
+            return libraryData;
+        }
+        public void LoadData(LibraryData data)
+        {
+            books = data.Books;
+            if (books.Any())
+                Book.UpdateNextId(books.Max(b => b.Id));
+
+            members = data.Members;
+            if (members.Any())
+                Member.UpdateNextId(members.Max(m => m.Id));
+
+            loans = data.Loans;
+            if (loans.Any())
+                Loan.UpdateNextId(loans.Max(l => l.Id));
+        }
+
     }
 }
