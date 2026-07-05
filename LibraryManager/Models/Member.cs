@@ -22,7 +22,7 @@
         }
         public override string ToString()
         {
-            return $"ID: {Id,-2} | Name: {Name} | Registered date: {RegisteredDate:yyyy-MM-dd}";
+            return $"ID: {Id,-2} | Name: {Name,-10} | Registered date: {RegisteredDate:yyyy-MM-dd}";
         }
     }
 }

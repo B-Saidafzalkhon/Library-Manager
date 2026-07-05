@@ -1,87 +1,20 @@
 {
-  "Books": [
-    {
-      "$type": "paperBook",
-      "ShelfNumber": 1,
-      "PositionOnShelf": 1,
-      "MustBeReturned": true,
-      "Id": 1,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    },
-    {
-      "$type": "eBook",
-      "FileSizeMb": 2.23,
-      "Format": ".pdf",
-      "MustBeReturned": false,
-      "Id": 2,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    },
-    {
-      "$type": "paperBook",
-      "ShelfNumber": 1,
-      "PositionOnShelf": 1,
-      "MustBeReturned": true,
-      "Id": 3,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    },
-    {
-      "$type": "eBook",
-      "FileSizeMb": 2.23,
-      "Format": ".pdf",
-      "MustBeReturned": false,
-      "Id": 4,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    },
-    {
-      "$type": "paperBook",
-      "ShelfNumber": 1,
-      "PositionOnShelf": 1,
-      "MustBeReturned": true,
-      "Id": 5,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    },
-    {
-      "$type": "eBook",
-      "FileSizeMb": 2.23,
-      "Format": ".pdf",
-      "MustBeReturned": false,
-      "Id": 6,
-      "Title": "Title",
-      "Author": "Author",
-      "Genre": "Genre",
-      "IsAvailable": true
-    }
-  ],
+  "Books": [],
   "Members": [
     {
       "Id": 1,
       "Name": "Nathan",
-      "RegisteredDate": "2026-07-04T16:16:53.0178274+05:00"
+      "RegisteredDate": "2026-07-05T22:46:25.5301378+05:00"
     },
     {
       "Id": 2,
-      "Name": "Nathan",
-      "RegisteredDate": "2026-07-04T16:16:53.0201454+05:00"
+      "Name": "Lisa",
+      "RegisteredDate": "2026-07-05T22:46:46.6745545+05:00"
     },
     {
       "Id": 3,
-      "Name": "Nathan",
-      "RegisteredDate": "2026-07-04T16:16:53.0213795+05:00"
+      "Name": "John",
+      "RegisteredDate": "2026-07-05T22:46:55.1302687+05:00"
     }
   ],
   "Loans": []
