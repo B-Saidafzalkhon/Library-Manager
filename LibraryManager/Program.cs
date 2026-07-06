@@ -9,7 +9,20 @@
                 Console.Write(message);
                 string? input = Console.ReadLine();
 
-                if(int.TryParse(input, out int number))
+                if (int.TryParse(input, out int number))
+                    return number;
+
+                Console.WriteLine("Invalid input!");
+            }
+        }
+        static double ReadDouble(string message)
+        {
+            while (true)
+            {
+                Console.Write(message);
+                string? input = Console.ReadLine();
+
+                if (double.TryParse(input, out double number))
                     return number;
 
                 Console.WriteLine("Invalid input!");
@@ -44,17 +57,18 @@
 
             LibraryService libraryService = new LibraryService();
             LibraryStorage libraryStorage = new LibraryStorage();
-            
+
             LibraryData data = libraryStorage.Load(filePath);
             libraryService.LoadData(data);
-            
+
             while (true)
             {
                 Console.WriteLine("=== Library Manager ===");
                 Console.WriteLine("1. Show all books\n" +
                     "2. Show all members\n" +
                     "3. Add member\n" +
-                    "4. Save and Exit");
+                    "4. Add book\n" +
+                    "5. Save and Exit");
 
                 int choice = ReadInt("Enter your choice: ");
                 switch (choice)
@@ -91,12 +105,61 @@
 
                             Member member = new Member(name);
                             libraryService.AddMember(member);
-                            Console.WriteLine($"Member: {member} added.");
+                            Console.WriteLine($"Member: {member.Name} added.");
                             Pause();
                         }
                         break;
 
                     case 4:
+                        {
+                            Console.Clear();
+                            Console.WriteLine("=== Adding book ===");
+                            string title = ReadString("Title: ");
+                            string author = ReadString("Author: ");
+                            string genre = ReadString("Genre: ");
+
+                            Console.Clear();
+                            Console.WriteLine("\n=== Book Type ===");
+
+                            Console.WriteLine("1. Paper book\n" +
+                                "2. E. book");
+
+                            int bookChoice = ReadInt("Enter your choice: ");
+                            Book? book = null;
+                            switch (bookChoice)
+                            {
+                                case 1:
+                                    Console.Clear();
+                                    Console.WriteLine("=== Paper Book ===");
+                                    int shelfNumber = ReadInt("Enter shelf number: ");
+                                    int positionOnShelf = ReadInt("Enter position on shelf: ");
+
+                                    book = new PaperBook(title, author, genre, shelfNumber, positionOnShelf);
+                                    break;
+
+                                case 2:
+                                    Console.Clear();
+                                    Console.WriteLine("=== E Book ===");
+                                    double fileSizeMb = ReadDouble("Enter file size (Mb): ");
+                                    string format = ReadString("Enter format: ");
+
+                                    book = new EBook(title, author, genre, fileSizeMb, format);
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid input.");
+                                    break;
+                            }
+                            if (book is not null)
+                            {
+                                libraryService.AddBook(book);
+                                Console.WriteLine($"Book: {book.Title} added.");
+                            }
+                            Pause();
+                        }
+                        break;
+
+                    case 5:
                         libraryStorage.Save(libraryService.GetData(), filePath);
                         Console.WriteLine("Saved | Goodbye.");
                         return;
