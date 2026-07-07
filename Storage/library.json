@@ -1,21 +1,134 @@
 {
-  "Books": [],
+  "Books": [
+    {
+      "$type": "paperBook",
+      "ShelfNumber": 1,
+      "PositionOnShelf": 1,
+      "MustBeReturned": true,
+      "Id": 1,
+      "Title": "Clean code",
+      "Author": "Robert Martin",
+      "Genre": "Programming",
+      "IsAvailable": false
+    },
+    {
+      "$type": "paperBook",
+      "ShelfNumber": 1,
+      "PositionOnShelf": 2,
+      "MustBeReturned": true,
+      "Id": 2,
+      "Title": "The Progmatic Programmer",
+      "Author": "Andrew Hunt",
+      "Genre": "Programming",
+      "IsAvailable": false
+    },
+    {
+      "$type": "paperBook",
+      "ShelfNumber": 2,
+      "PositionOnShelf": 1,
+      "MustBeReturned": true,
+      "Id": 3,
+      "Title": "Dune",
+      "Author": "Frank Herbert",
+      "Genre": "SciFi",
+      "IsAvailable": false
+    },
+    {
+      "$type": "paperBook",
+      "ShelfNumber": 2,
+      "PositionOnShelf": 2,
+      "MustBeReturned": true,
+      "Id": 4,
+      "Title": "1984",
+      "Author": "George Orwell",
+      "Genre": "Dystopia",
+      "IsAvailable": true
+    },
+    {
+      "$type": "eBook",
+      "FileSizeMb": 4.5,
+      "Format": "PDF",
+      "MustBeReturned": false,
+      "Id": 5,
+      "Title": "Clean Architecture",
+      "Author": "Robert Martin",
+      "Genre": "Programming",
+      "IsAvailable": false
+    },
+    {
+      "$type": "eBook",
+      "FileSizeMb": 2.1,
+      "Format": "EPUB",
+      "MustBeReturned": false,
+      "Id": 6,
+      "Title": "Foundation",
+      "Author": "Isaac Asimov",
+      "Genre": "SciFi",
+      "IsAvailable": true
+    }
+  ],
   "Members": [
     {
       "Id": 1,
-      "Name": "Nathan",
-      "RegisteredDate": "2026-07-05T22:46:25.5301378+05:00"
+      "Name": "Anna Schmidt",
+      "RegisteredDate": "2026-07-07T21:21:34.7129782+05:00"
     },
     {
       "Id": 2,
-      "Name": "Lisa",
-      "RegisteredDate": "2026-07-05T22:46:46.6745545+05:00"
+      "Name": "Marco Rossi",
+      "RegisteredDate": "2026-07-07T21:21:34.7156816+05:00"
     },
     {
       "Id": 3,
-      "Name": "John",
-      "RegisteredDate": "2026-07-05T22:46:55.1302687+05:00"
+      "Name": "Yuki Tanaka",
+      "RegisteredDate": "2026-07-07T21:21:34.7156881+05:00"
+    },
+    {
+      "Id": 4,
+      "Name": "David Miller",
+      "RegisteredDate": "2026-07-07T21:21:34.7156908+05:00"
     }
   ],
-  "Loans": []
+  "Loans": [
+    {
+      "Id": 1,
+      "BookId": 1,
+      "MemberId": 1,
+      "LoanDate": "2026-07-07T21:22:06.2536515+05:00",
+      "DueDate": "2026-07-21T21:22:06.2536515+05:00",
+      "ReturnDate": null,
+      "IsReturned": false,
+      "IsOverdue": false
+    },
+    {
+      "Id": 2,
+      "BookId": 2,
+      "MemberId": 1,
+      "LoanDate": "2026-07-07T21:22:15.2848326+05:00",
+      "DueDate": "2026-07-21T21:22:15.2848326+05:00",
+      "ReturnDate": null,
+      "IsReturned": false,
+      "IsOverdue": false
+    },
+    {
+      "Id": 3,
+      "BookId": 3,
+      "MemberId": 1,
+      "LoanDate": "2026-07-07T21:22:21.9736974+05:00",
+      "DueDate": "2026-07-21T21:22:21.9736974+05:00",
+      "ReturnDate": null,
+      "IsReturned": false,
+      "IsOverdue": false
+    },
+    {
+      "Id": 4,
+      "BookId": 5,
+      "MemberId": 2,
+      "LoanDate": "2026-07-07T21:22:33.8219809+05:00",
+      "DueDate": "2026-07-21T21:22:33.8219809+05:00",
+      "ReturnDate": null,
+      "IsReturned": false,
+      "IsOverdue": false
+    }
+  ]
 }

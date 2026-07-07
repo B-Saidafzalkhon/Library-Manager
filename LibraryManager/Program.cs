@@ -170,7 +170,7 @@
                             Console.ForegroundColor = ConsoleColor.Blue;
                             Console.WriteLine("<<Books>>");
                             foreach (var book in libraryService.GetAllBooks())
-                                Console.WriteLine($"{book.Id} | {book.Title} | Available: {book.IsAvailable}");
+                                Console.WriteLine($"{book.Id,-2} | {book.Title,-25} | Available: {book.IsAvailable}");
 
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("<<Members>>");
@@ -239,28 +239,28 @@
                         Console.Clear();
                         Console.WriteLine("=== Reports ===");
 
-                        Console.WriteLine("<<Books on loan>>");
+                        Console.WriteLine("\n<<Books on loan>>");
                         var loanedBooks = libraryService.GetLoanedBooks();
                         if (loanedBooks.Any())
                             foreach (var loan in loanedBooks) Console.WriteLine(loan);
                         else
                             Console.WriteLine("None");
 
-                        Console.WriteLine("<<Overdue loans>>");
+                        Console.WriteLine("\n<<Overdue loans>>");
                         var overdue = libraryService.GetOverdueLoans();
                         if (overdue.Any())
                             foreach (var loan in overdue) Console.WriteLine(loan);
                         else
                             Console.WriteLine("None");
 
-                        Console.WriteLine("<<Popular books>>");
+                        Console.WriteLine("\n<<Popular books>>");
                         var popularBooks = libraryService.GetPopularBooks();
                         if(popularBooks.Any())
                             foreach (var book in popularBooks) Console.WriteLine(book);
                         else
                             Console.WriteLine("None");
 
-                        Console.WriteLine("<<Top member>>");
+                        Console.WriteLine("\n<<Top member>>");
                         Member? topMember = libraryService.GetMemberWithMostLoans();
                         if (topMember is not null)
                             Console.WriteLine(topMember);

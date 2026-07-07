@@ -31,7 +31,7 @@ namespace LibraryManager
         }
         public override string ToString()
         {
-            return $"ID: {Id,-2} | Title: {Title,-10} | Author: {Author,-10} | Genre: {Genre,-10} | Status (Is available ?): {IsAvailable}";
+            return $"ID: {Id,-2} | Title: {Title,-25} | Author: {Author,-15} | Genre: {Genre,-15} | Status (Is available ?): {IsAvailable,-5}";
         }
     }
 }
