@@ -76,7 +76,7 @@
             .Where(b => b.Genre.Contains(genre, StringComparison.OrdinalIgnoreCase));
 
         public IEnumerable<Book> GetLoanedBooks() => books.Where(b => b.IsAvailable == false);
-       
+        public IEnumerable<Loan> GetActiveLoans() => loans.Where(l => !l.IsReturned);
         public Member? GetMemberWithMostLoans()
         {
             var topGroup = loans

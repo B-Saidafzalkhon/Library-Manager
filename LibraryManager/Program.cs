@@ -68,7 +68,9 @@
                     "2. Show all members\n" +
                     "3. Add member\n" +
                     "4. Add book\n" +
-                    "5. Save and Exit");
+                    "5. Loan book\n" +
+                    "6. Return book\n" +
+                    "7. Save and Exit");
 
                 int choice = ReadInt("Enter your choice: ");
                 switch (choice)
@@ -160,6 +162,78 @@
                         break;
 
                     case 5:
+                        Console.Clear();
+                        Console.WriteLine("=== Loaning Book ===");
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine("<<Books>>");
+                            foreach (var book in libraryService.GetAllBooks())
+                                Console.WriteLine($"{book.Id} | {book.Title} | Available: {book.IsAvailable}");
+
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("<<Members>>");
+                            foreach (var member in libraryService.GetAllMembers())
+                                Console.WriteLine(member);
+                            Console.ResetColor();
+
+                            int bookId = ReadInt("Enter book id: ");
+                            int memberId = ReadInt("Enter member id: ");
+
+                            LoanResult loanResult = libraryService.LoanBook(bookId, memberId);
+                            switch (loanResult)
+                            {
+                                case LoanResult.Success:
+                                    Console.WriteLine("Loaned successfully");
+                                    break;
+
+                                case LoanResult.BookNotFound:
+                                    Console.WriteLine("Book not found");
+                                    break;
+
+                                case LoanResult.MemberNotFound:
+                                    Console.WriteLine("Member not found");
+                                    break;
+
+                                case LoanResult.BookNotAvailable:
+                                    Console.WriteLine("Book is not available");
+                                    break;
+
+                                case LoanResult.LimitReached:
+                                    Console.WriteLine("Loan limit reached");
+                                    break;
+                            }
+                        }
+                        Pause();
+                        break;
+
+                    case 6:
+                        Console.Clear();
+                        Console.WriteLine("=== Return book ===");
+
+                        foreach (var loan in libraryService.GetActiveLoans())
+                            Console.WriteLine(loan);
+
+                        int loanId = ReadInt("Enter loan id: ");
+
+                        ReturnResult returnResult = libraryService.ReturnBook(loanId);
+                        switch (returnResult)
+                        {
+                            case ReturnResult.Success:
+                                Console.WriteLine("Returned successfully");
+                                break;
+
+                            case ReturnResult.LoanNotFound:
+                                Console.WriteLine("Loan not found");
+                                break;
+
+                            case ReturnResult.AlreadyReturned:
+                                Console.WriteLine("Already returned");
+                                break;
+                        }
+                        Pause();
+                        break;
+
+                    case 7:
                         libraryStorage.Save(libraryService.GetData(), filePath);
                         Console.WriteLine("Saved | Goodbye.");
                         return;
