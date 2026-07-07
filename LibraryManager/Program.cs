@@ -70,7 +70,8 @@
                     "4. Add book\n" +
                     "5. Loan book\n" +
                     "6. Return book\n" +
-                    "7. Save and Exit");
+                    "7. Reports\n" +
+                    "8. Save and Exit");
 
                 int choice = ReadInt("Enter your choice: ");
                 switch (choice)
@@ -234,6 +235,40 @@
                         break;
 
                     case 7:
+                        Console.Clear();
+                        Console.WriteLine("=== Reports ===");
+
+                        Console.WriteLine("<<Books on loan>>");
+                        var loanedBooks = libraryService.GetLoanedBooks();
+                        if (loanedBooks.Any())
+                            foreach (var loan in loanedBooks) Console.WriteLine(loan);
+                        else
+                            Console.WriteLine("None");
+
+                        Console.WriteLine("<<Overdue loans>>");
+                        var overdue = libraryService.GetOverdueLoans();
+                        if (overdue.Any())
+                            foreach (var loan in overdue) Console.WriteLine(loan);
+                        else
+                            Console.WriteLine("None");
+
+                        Console.WriteLine("<<Popular books>>");
+                        var popularBooks = libraryService.GetPopularBooks();
+                        if(popularBooks.Any())
+                            foreach (var book in popularBooks) Console.WriteLine(book);
+                        else
+                            Console.WriteLine("None");
+
+                        Console.WriteLine("<<Top member>>");
+                        Member? topMember = libraryService.GetMemberWithMostLoans();
+                        if (topMember is not null)
+                            Console.WriteLine(topMember);
+                        else
+                            Console.WriteLine("No active loans");
+                        Pause();
+                        break;
+
+                    case 8:
                         libraryStorage.Save(libraryService.GetData(), filePath);
                         Console.WriteLine("Saved | Goodbye.");
                         return;
