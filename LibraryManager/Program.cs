@@ -71,7 +71,8 @@
                     "5. Loan book\n" +
                     "6. Return book\n" +
                     "7. Reports\n" +
-                    "8. Save and Exit");
+                    "8. Search\n" +
+                    "9. Save and Exit");
 
                 int choice = ReadInt("Enter your choice: ");
                 switch (choice)
@@ -269,6 +270,58 @@
                         break;
 
                     case 8:
+                        Console.Clear();
+                        Console.WriteLine("=== Search ===");
+                        {
+                            Console.WriteLine("1. By title\n" +
+                                "2. By author\n" +
+                                "3. By genre");
+
+                            int searchChoice = ReadInt("Enter your choice: ");
+
+                            switch (searchChoice)
+                            {
+                                case 1:
+
+                                    string title = ReadString("Enter title: ");
+                                    var booksByTitles = libraryService.FindBooksByTitle(title);
+                                    if(booksByTitles.Any())
+                                        foreach(var book in booksByTitles) Console.WriteLine(book);
+                                    else
+                                        Console.WriteLine("None");
+
+                                    break;
+
+                                case 2:
+
+                                    string author = ReadString("Enter author: ");
+                                    var booksByAuthor = libraryService.FindBooksByAuthor(author);
+                                    if (booksByAuthor.Any())
+                                        foreach (var book in booksByAuthor) Console.WriteLine(book);
+                                    else
+                                        Console.WriteLine("None");
+
+                                    break;
+
+                                case 3:
+
+                                    string genre = ReadString("Enter genre: ");
+                                    var booksByGenre = libraryService.FindBooksByGenre(genre);
+                                    if (booksByGenre.Any())
+                                        foreach (var book in booksByGenre) Console.WriteLine(book);
+                                    else
+                                        Console.WriteLine("None");
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid option");
+                                    break;
+                            }
+                        }
+                        Pause();
+                        break;
+
+                    case 9:
                         libraryStorage.Save(libraryService.GetData(), filePath);
                         Console.WriteLine("Saved | Goodbye.");
                         return;
