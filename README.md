@@ -25,7 +25,7 @@ Written in C# / .NET.
 - **Enums**: typed operation results (`LoanResult`, `ReturnResult`)
 - **JSON serialization**: including polymorphic (de)serialization of book types
 - **Exception handling**: safe error handling with `try/catch` for files, JSON, and invalid operations
-- **.NET 10/ C#** 
+- **.NET 10, C#** 
 
 ## Screenshots
 
