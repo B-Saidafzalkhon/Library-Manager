@@ -74,5 +74,26 @@ namespace LibraryManager.Tests
 
             Assert.Equal(LoanResult.LimitReached, result);
         }
+
+        [Theory]
+        [InlineData("Programming", 2)]
+        [InlineData("SciFi", 1)]
+        [InlineData("Horror", 0)]
+        public void FindBookByGenre_ReturnsMatchingCount(string genre, int expectedCount)
+        {
+            var service = new LibraryService();
+
+            var eBook1 = new EBook("Foundation (1)", "Isaac Asimov", "SciFi", 2.1, "EPUB");
+            var paperbook1 = new PaperBook("Clean Architecture (1)", "Robert Martin", "Programming", 1, 1);
+            var paperbook2 = new PaperBook("Clean Architecture (2)", "Robert Martin", "Programming", 1, 2);
+
+            service.AddBook(eBook1);
+            service.AddBook(paperbook1);
+            service.AddBook(paperbook2);
+
+            var found = service.FindBooksByGenre(genre);
+            
+            Assert.Equal(expectedCount, found.Count());
+        }
     }
 }
